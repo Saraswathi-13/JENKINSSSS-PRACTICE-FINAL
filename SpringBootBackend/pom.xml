@@ -13,6 +13,8 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<name>SpringBootBackend</name>
 	<description>Demo SpringBoot Project</description>
+	<packaging>war</packaging>
+
 	<url/>
 	<licenses>
 		<license/>
