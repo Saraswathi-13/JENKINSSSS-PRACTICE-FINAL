@@ -1,0 +1,41 @@
+package com.klef.practice;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+public class HospitalServiceImpl implements HospitalService{
+	@Autowired
+	private HospitalRepository hospitalRepository;
+
+	@Override
+	public Hospital addHospital(Hospital hospital) {
+		return hospitalRepository.save(hospital);
+	}
+
+	@Override
+	public List<Hospital> getAllHospitals() {
+		return hospitalRepository.findAll();
+	}
+
+	@Override
+	public Hospital getHospitalById(int id) {
+		Optional<Hospital> opt = hospitalRepository.findById(id);
+        return opt.orElse(null);
+	}
+
+	@Override
+	public Hospital updateHospital(Hospital hospital) {
+		return hospitalRepository.save(hospital);
+	}
+
+	@Override
+	public void deleteHospitalById(int id) {
+		hospitalRepository.deleteById(id);
+		
+	}
+	
+
+}

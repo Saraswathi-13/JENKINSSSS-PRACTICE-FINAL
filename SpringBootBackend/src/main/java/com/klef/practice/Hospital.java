@@ -1,0 +1,76 @@
+package com.klef.practice;
+
+import jakarta.persistence.Column;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+@Entity
+@Table(name = "hospital_table")
+public class Hospital {
+	@Id
+	@Column(name = "hospital_id")
+	private int id;
+	@Column(name = "hospital_name", nullable = false, length = 50)
+	private String name;
+	@Column(name = "hospital_branch", nullable = false, length = 10)
+	private String branch; //FEMALE or MALE
+	@Column(name = "hospital_experience", nullable = false)
+	private String experience; // 1 or 2 or 3
+	@Column(name = "hospital_email", nullable = false, unique = true, length = 20)
+	private String email;
+	@Column(name = "hospital_password", nullable = false, length = 50)
+	private String password;
+	@Column(name = "hospital_contact", nullable = false, unique = true, length = 20)
+	private String contact;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getBranch() {
+		return branch;
+	}
+	public void setBranch(String branch) {
+		this.branch = branch;
+	}
+	public String getExperience() {
+		return experience;
+	}
+	public void setExperience(String experience) {
+		this.experience = experience;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+	@Override
+	public String toString() {
+		return "Student [id=" + id + ", name=" + name + ", branch=" + branch
+				+ ", experience=" + experience + ", email=" + email
+				+ ", password=" + password + ", contact=" + contact + "]";
+	}
+      
+}

@@ -1,0 +1,38 @@
+package com.klef.practice;
+
+import java.util.List;
+
+public class HospitalServiceImpl implements HospitalService{
+
+	@Override
+	public Hospital addHospital(Hospital hospital) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Hospital> getAllHospitals() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Hospital getHospitalById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Hospital updateHospital(Hospital hospital) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteHospitalById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+}

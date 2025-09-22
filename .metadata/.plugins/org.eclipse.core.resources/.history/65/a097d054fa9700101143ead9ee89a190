@@ -1,0 +1,69 @@
+package com.klef.practice;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+public class HospitalController {
+	@Autowired
+    private HospitalService hospitalService;
+    
+    @GetMapping("/")
+    public String home() 
+    {
+        return "Jenkins Full Stack Deployment Demo";
+    }
+    
+
+    @PostMapping("/add")
+    public ResponseEntity<Hospital> addHospital(@RequestBody Hospital hospital) {
+        Hospital savedHospital = hospitalService.addHospital(hospital);
+        return new ResponseEntity<>(savedHospital, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<Hospital>> getAllHospitals() {
+        List<Hospital> hospitals = hospitalService.getAllHospitals();
+        return new ResponseEntity<>(hospitals, HttpStatus.OK);
+    }
+
+    @GetMapping("/get/{id}")
+    public ResponseEntity<?> getHospitalById(@PathVariable int id) {
+        Hospital hospital = hospitalService.getHospitalById(id);
+        if (hospital != null) {
+            return new ResponseEntity<>(hospital, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Hospital with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<?> updateHospital(@RequestBody Hospital hospital) {
+        Hospital existing = hospitalService.getHospitalById(hospital.getId());
+        if (existing != null) {
+            Hospital updatedHospital = hospitalService.updateHospital(hospital);
+            return new ResponseEntity<>(updatedHospital, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Cannot update. Student with ID " + hospital.getId() + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deleteHospital(@PathVariable int id) {
+        Hospital existing = hospitalService.getHospitalById(id);
+        if (existing != null) {
+            hospitalService.deleteHospitalById(id);
+            return new ResponseEntity<>("Hospital with ID " + id + " deleted successfully.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Cannot delete. Hospital with ID " + id + " not found.", HttpStatus.NOT_FOUND);
+        }
+    }
+}
